@@ -64,7 +64,7 @@
             <h6 class="card-subtitle mb-2 " style="font-family: DauphinPlain;">Hi there!</h6>
             <p class="card-text" style="font-family: DauphinPlain;">
             <?php
-            $lines = explode(PHP_EOL, strval($pages[$i]));
+            $lines = explode(PHP_EOL, strval($pages[$i]));    //for showing only frist 5 lines in the card
             echo implode(PHP_EOL, array_slice($lines,0,4)) . PHP_EOL; 
             ?>
             </p>

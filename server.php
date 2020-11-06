@@ -12,7 +12,7 @@ $pages=array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', 'Suruchi@2001', 'Diary');
-if ($bd->connect_error) {
+if ($db->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
@@ -46,8 +46,8 @@ if (isset($_POST['reg_user'])) {
   }
 
   // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM Users WHERE username='$username' OR email='$email' LIMIT 1";
+  // a user does not already exist with the same username 
+  $user_check_query = "SELECT * FROM Users WHERE username='$username' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
   
@@ -148,23 +148,6 @@ function bringAllPages()
     }
 }
 
-//GET ONE PAGE
-function bringOnePage($date)
-{
-  global $page;
-  $username = $_SESSION['username'];
-  $conn = mysqli_connect('localhost', 'root', 'Suruchi@2001', 'Diary');
-  $onepage_query = "SELECT * FROM Diarypages WHERE username='$username' AND date=$date LIMIT 1";
-  $result = $conn->query($onepage_query);
-  if ($result->num_rows > 0){
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $page=$row["page"];
-    }
-  } else {
-    echo "0 results";
-  }
-}
 
 //UPDATE PAGE
 if(isset($_POST['update_page']) and isset($_SESSION['username']))
